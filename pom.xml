@@ -15,6 +15,7 @@
         <java.version>1.8</java.version>
         <spring-data-jpa.version>2.0.6.RELEASE</spring-data-jpa.version>
         <hibernate-entitymanager.version>5.2.17.Final</hibernate-entitymanager.version>
+        <postgresql.version>42.2.2</postgresql.version>
     </properties>
 
     <dependencies>
@@ -47,6 +48,13 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-entitymanager.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
 
 
     </dependencies>
