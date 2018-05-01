@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.core.env.Environment;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.Resource;
@@ -57,7 +59,23 @@ public class DatabaseConfig {
         basicDataSource.setDriverClassName(env.getRequiredProperty("db.driver"));
         basicDataSource.setUsername(env.getRequiredProperty("db.username"));
         basicDataSource.setPassword(env.getRequiredProperty("db.password"));
+
+        basicDataSource.setInitialSize(Integer.parseInt(env.getRequiredProperty("db.initialSize")));
+        basicDataSource.setMinIdle(Integer.parseInt(env.getRequiredProperty("db.minIdle")));
+        basicDataSource.setMaxIdle(Integer.parseInt(env.getRequiredProperty("db.maxIdle")));
+        basicDataSource.setTimeBetweenEvictionRunsMillis(Long.parseLong(env.getRequiredProperty("db.timeBetweenEvictionRunsMillis")));
+        basicDataSource.setMinEvictableIdleTimeMillis(Long.parseLong(env.getRequiredProperty("db.minEvictableIdleTimeMills")));
+        basicDataSource.setTestOnBorrow(Boolean.parseBoolean(env.getRequiredProperty("db.testOnBorrow")));
+        basicDataSource.setValidationQuery(env.getRequiredProperty("db.validationQuery"));
         return basicDataSource;
+    }
+
+    @Bean
+    public PlatformTransactionManager platformTransactionManager() {
+        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+
+        return jpaTransactionManager;
     }
 
 }
