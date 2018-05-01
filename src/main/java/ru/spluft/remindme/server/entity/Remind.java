@@ -18,7 +18,7 @@ public class Remind {
     @Column(name = "remind_date", nullable = false)
     private Date remindDate;
 
-    public Remind(long id, String title, Date remindDate) {
+    public Remind() {
     }
 
     public long getId() {
