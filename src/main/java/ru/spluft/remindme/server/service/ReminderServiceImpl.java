@@ -1,14 +1,14 @@
-package ru.spluft.remindme.server.repository;
+package ru.spluft.remindme.server.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.spluft.remindme.server.entity.Remind;
-import ru.spluft.remindme.server.service.RemindeService;
+import ru.spluft.remindme.server.repository.RemindRepository;
 
 import java.util.List;
 
 @Service
-public class RemindServiceImpl  implements RemindeService {
+public class ReminderServiceImpl implements ReminderService {
 
     @Autowired
     public RemindRepository remindRepository;
@@ -19,7 +19,7 @@ public class RemindServiceImpl  implements RemindeService {
     }
 
     @Override
-    public Remind getBiId(long id) {
+    public Remind getById(long id) {
         return remindRepository.getOne(id);
     }
 

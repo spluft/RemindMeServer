@@ -4,10 +4,10 @@ import ru.spluft.remindme.server.entity.Remind;
 
 import java.util.List;
 
-public interface RemindeService {
+public interface ReminderService {
 
     List<Remind> getAll();
-    Remind getBiId(long id);
+    Remind getById(long id);
     Remind save(Remind remind);
     void remove(long id);
 }
